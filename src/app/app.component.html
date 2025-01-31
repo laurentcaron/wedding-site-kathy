@@ -1,0 +1,182 @@
+
+<!-- Toolbar -->
+<!-- <div class="toolbar" role="banner">
+
+</div> -->
+
+<div class="content" role="main">
+  <div class="container">
+    <!-- <div class="section names">
+      <img [src]="'/assets/images/image000000_4.jpg'">
+    </div> -->
+    <div class="section photo photo-1"></div>
+
+    <div class="section salute">
+      <h1>
+        Hi
+        <ng-container *ngFor="let guest of guestList; let i = index">
+          {{ guest.first }}<ng-container *ngIf="i + 1 < guestList.length - 1">,</ng-container> 
+          <ng-container *ngIf="i + 1 === guestList.length - 1"> &</ng-container>
+        </ng-container>
+      </h1>
+
+      <h2 class="join-us">
+        Please join us as we walk down the aisle on October 12th, 2024
+      </h2>
+    </div>
+
+    <div class="section info">
+      <h3>
+        The ceremony and reception will be held at our residence
+      </h3>
+      <a href="https://maps.app.goo.gl/8vMNcAMZCwv6F4pCA" target="_blank" class="link">
+        93 ch. Deer Hill, Rigaud, QC, Canada
+      </a>
+      <h3>
+        The ceremony will start at 3h30 pm and will be followed by cocktail hour
+      </h3>
+      <h3>
+        Welcome drinks will be served upon arrival
+      </h3>
+
+      <h3 class="second-part">
+        It will be an unplugged ceremony which means no phones out during the ceremony
+      </h3>
+      <h3>
+        We have hired a great photographer and videographer to capture the moment, please live this moment in the present with us
+      </h3>
+      <h3>
+        We will give you a selected moment for a quick photo during the ceremony.
+      </h3>
+
+      <h3 class="second-part">
+        We love your children, but this will be an adults only event and so kids will not be able to attend
+      </h3>
+      <h3>
+        Pets also won't be able to attend the event
+      </h3>
+    </div>
+
+    <div class="section info-sec">
+      <h2>
+        Dress Code
+      </h2>
+      <h3>
+        The celebrations will be happening outside, rain or shine and we will have tents to cover the event
+      </h3>
+      <h3>
+        The dress code is semi-formal and we suggest our guests wear flats or wide block heels since the event is outdoors
+      </h3>
+      <h3>
+        In case of rain, a closed shoe would be a better fit
+      </h3>
+
+      <div class="divider"></div>
+
+      <h2>
+        Accommodation
+      </h2>
+      <h3>
+        We have, at varying degrees of closeness and prices, hotels and motels close to our home
+      </h3>
+      <h3>
+        Holiday inn express & suites (about 20 minute drive) in Vaudreuil, Hudson inn (5 min drive) and travelodge (15 min drive) in Rigaud
+      </h3>
+
+      <div class="divider"></div>
+
+      <h2>
+        Gifts
+      </h2>
+      <h3 class="big-margin">
+        Your presence at our wedding is a gift in itself, however, if you wish to gift us with a contribution to build our future together, we will have a wishing well present at the event
+      </h3>
+    </div>
+
+    <div class="section other">
+      <h2>
+        Menu
+      </h2>
+      <h3 class="big-margin">
+        The main dish for the event takes into account these allergies: dairy, nuts, gluten and our vegetarians.
+      </h3>
+      <h3>
+        These are the dishes that will be offered by our caterer on the day of the event:
+      </h3>
+      <p>Chicken burger and fries</p>
+      <p>Veggie burger and fries</p>
+      <p>Smoked meat sandwich and fries</p>
+      <p>Pulled pork sandwich and fries</p>
+      <p>Pulled pork Poutine</p>
+      <p>Duck confit Poutine</p>
+      <p>Poutine (original)</p>
+
+      <div class="divider"></div>
+
+      <h2>
+        Parking
+      </h2>
+      <h3>
+        The available parking will be in the street since we are doing this at home
+      </h3>
+
+      <div class="divider"></div>
+
+      <h2>
+        Alcohol
+      </h2>
+      <h3>
+        Alcohol will be served before the ceremony as a welcome cocktail and after the ceremony as a self serve open bar
+      </h3>
+      <h3>
+        We will also have non alcoholic beverages available
+      </h3>
+    </div>
+
+    <div class="section photo photo-2"></div>
+
+    <div class="section respond">
+      <h2>
+        Kindly Respond
+      </h2>
+      <h3>
+        Please RSVP by July 19
+      </h3>
+    </div>
+  
+    <form [formGroup]="form" class="section form-section" (submit)="submit()" *ngIf="!shouldHideForm && !shouldShowGotcha">
+      <ng-container *ngFor="let guest of guestList; let i = index">
+        <div formGroupName="joining" class="col space-between joining-group select-test">
+          <h2 [ngClass]="{'name': i > 0}">{{ guest.first + ' ' + guest.last}}</h2>
+          <select [formControlName]="guest.first">
+            <option value="">Will you be joining us?</option>
+            <option *ngFor="let option of joiningOptions" [ngValue]="option.id">
+              {{ option.text }}
+            </option>
+          </select>
+        </div>
+      </ng-container>
+
+      <div class="divider"></div>
+
+      <button type="submit" class="submit-button" [disabled]="loading">
+        <ng-container *ngIf="!loading">RSVP</ng-container>
+        <ng-container *ngIf="loading"><img src="../assets/images/spinner.svg"></ng-container>
+      </button>
+      <span class="margin-16 error" *ngIf="errorMessage">{{errorMessage}}</span>
+
+    </form>
+
+    <div class="section completed-form" *ngIf="shouldHideForm || shouldShowGotcha">
+      <h3 *ngIf="shouldHideForm">
+        Thank you for completing the form!
+      </h3>
+      <h3 *ngIf="shouldShowGotcha">
+        Gotcha!
+      </h3>
+    </div>
+
+  </div>
+</div>
+
+<router-outlet></router-outlet>
